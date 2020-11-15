@@ -27,10 +27,10 @@
                                            
                                         <input class="form-control"  type="password"  v-model="password">
                                           <b>
-                                     Don't have an account?
-                                    <a class="link2" href="/signup">Register an Account</a>
+                            
+                                             <p  style="color:red;">{{message}}</p>
                                     
-                                    </b>
+                                        </b>
                                     <!-- Submit -->
                                     </div>
                                       <br>  
@@ -64,24 +64,36 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      message:""
     };
   },
   methods: {
-    async onLogin() {
-      try {
-        await this.$auth.loginWith("local", {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        });
-        //this.$router.push("/");
-          await this.$router.go("/")
-      } catch (error) {
-        console.log(error);
-      }
-    }
+     async onLogin() {
+                  if(this.email=='' || this.password == ''){
+                         alert("Enter a email and password. ");
+                  }
+                  else{
+                  try {
+                        await this.$auth.loginWith('local', {
+                              data: {
+                                    email: this.email,
+                                    password: this.password,
+                              },
+                        }
+                        
+                        );
+                        //this.$router.push("/");
+                        await this.$router.go('/');
+                  } catch (error) {
+                        this.message = "The username or password you typed is incorrect. Please try again.";
+                       
+                        console.log(error);
+                        
+                  }
+                  }
+              
+            }
   }
 }
 </script>
