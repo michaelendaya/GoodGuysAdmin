@@ -15,8 +15,8 @@ export default {
 
 
 
-      { rel: 'stylesheet', href: '../css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: '../css/bootstrap.css' },
+      { rel: 'stylesheet', href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' },
+    
       { rel: 'stylesheet', href: '../css/style.css' },
       { rel: 'stylesheet', href: '../css/responsive.css' },
       { rel: 'stylesheet', href: '../css/custom.css' },
@@ -52,6 +52,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    { src: "~/plugins/vue2-editor", ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
