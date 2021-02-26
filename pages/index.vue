@@ -18,10 +18,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="product in products" :key="product._id">
-            <td>{{ product.title }}</td>
+          <tr v-for="(product, index) in products" :key="product._id">
+            <td class="title">{{ product.title }}</td>
             <td><img :src="product.photo" alt="" /></td>
-            <td>
+            <td class="table-image">
               <nuxt-link
                 :to="`/products/${product._id}`"
                 class="btn hvr-hover"
@@ -48,8 +48,9 @@
           </tr>
         </tfoot>
       </table>
-    </div>
-    <div class="text-center">
+        <div class="paginate">
+          
+                <div class="d-flex justify-content-center">
       <b-pagination
         @change="handlePageChange"
         v-model="currentPage"
@@ -57,6 +58,9 @@
         :per-page="perPage"
       ></b-pagination>
     </div>
+    </div>
+    </div>
+  
   </div>
 </template>
 
@@ -74,9 +78,9 @@ export default {
 
       return {
         products: response.products,
-         currentPage: 1,
+        currentPage: 1,
         perPage: 5,
-        totalRows: response.count
+        totalRows: response.count,
       };
     } catch (error) {
       console.log(error);
@@ -85,15 +89,19 @@ export default {
 
   methods: {
     async onDeleteProduct(id, index) {
-      try {
-        let response = await this.$axios.$delete(
-          `http://localhost:3000/api/products/${id}`
-        );
-        if (response.status) {
-          this.products.splice(index, 1);
+      if (confirm("Are you sure you delete this item")) {
+        try {
+          let response = await this.$axios.$delete(
+            `/api/products/${id}`
+          );
+          if (response.status) {
+            this.products.splice(index, 1);
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
+      }else{
+        //nothing happens
       }
     },
     async handlePageChange(page) {
@@ -106,3 +114,19 @@ export default {
   },
 };
 </script>
+<style scoped>
+table img{
+  text-align: center;
+    max-width: 150px;
+    max-height: 200px;
+}
+table .title{
+  max-width: 150px;
+}
+.paginate{
+  display: flex;
+  align-items: center;
+  justify-content: center
+
+}
+</style>

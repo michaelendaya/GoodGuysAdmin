@@ -6,35 +6,28 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Client</th>
-              <th>Orders</th>
-              <th>Address</th>
-              <th>Delete</th>
+              <th>Order ID</th>
+              <th>Owner</th>
+              <th>Subtotal</th>
+              <th>View</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="order in orders" :key="order._id">
               <td>
-                <span>{{ order.owner.name }}</span>
+                <span>({{order._id}}) </span>
               </td>
               <td>
-                <div v-for="product in order.products" :key="product._id">
-                  <span>{{ product.productID.title }}</span>
-                  <div class="d-flex">
-                  <div class="mr-auto p-2">
-                       <img :src="product.productID.photo" class="img-fluid" style="width: 100px;" />
-                       </div>
-                      
-                
-                  <div class="p-2">
-                    Quantity: {{ product.quantity }}
-                    <br />
-                    Price ${{ product.productID.price * product.quantity }}
-                  </div>
-                    </div>
-                </div>
+                <!-- <div v-for="product in order.products" :key="product._id">
+                  Quantity: {{ product.quantity }}
+                  <br />
+                  Price ${{ product.price * product.quantity }}
+                  
+                </div> -->
+                {{ order.owner.name}} 
+       
               </td>
-              <td>  
+              <!-- <td  v-if=" order.owner.address !== null" >  
                     <span>Full Name: {{ order.owner.address.fullName}}</span>
                     <br>
                     <span>Contact Number: {{ order.owner.address.phoneNumber}}</span>
@@ -43,16 +36,19 @@
                     <span>{{ order.owner.address.city}}, {{ order.owner.address.state}}</span>
                     <br>
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
-              </td>
-              <td><a href="#" class="btn hvr-hover2">delete</a></td>
+              </td> -->
+                 <td>       ₱ {{order.subTotal }}</td>
+              <td><nuxt-link :to="`/orders/${order._id}`" class="address-alert"
+              >View Order</nuxt-link
+            ></td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <th>Client</th>
-              <th>Orders</th>
-              <th>Address</th>
-              <th>Delete</th>
+              <th>Order Id</th>
+              <th>Owner</th>
+              <th>Subtotal</th>
+              <th>View</th>
             </tr>
           </tfoot>
         </table>
@@ -76,12 +72,22 @@ export default {
       console.log(error);
     }
   },
+  computed: {
+    totalItem: function () {
+      let sum = 0;
+     products.forEach(function (item) {
+        sum += parseFloat(item.price) * parseFloat(item.quantity);
+      });
+
+      return sum;
+    },
+  },
 };
 </script>
 
 <style scoped>
-.product-deets{
-    margin-left: 20px;
+.product-deets {
+  margin-left: 20px;
 }
 span {
   font-weight: 700;
@@ -91,9 +97,7 @@ span {
   font-weight: 700;
   color: white;
 }
-a:hover {
-  color: white;
-}
+
 .product-name a:hover {
   color: #d5b256;
 }

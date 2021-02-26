@@ -19,6 +19,7 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 						<li class="nav-item"><nuxt-link to="/" class="nav-link" >Home</nuxt-link></li>
+						<li class="nav-item"><nuxt-link to="/orders" class="nav-link" >Orders</nuxt-link></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">Go To Client</a></li>
 	
                       

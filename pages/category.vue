@@ -5,18 +5,18 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">
                         <h2>Add A Category</h2>
-                        <form action="">
+                        <form @submit.prevent="onAddCategory">
                             <div class="row">
                                 <!-- Category -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input v-model="type" class="form-control" type="text"  name="name" placeholder="Category Type" >
+                                        <input v-model="type" class="form-control" required type="text"  name="name" placeholder="Category Type" >
                         
                                     </div>
                                 </div>  
                                 <div class="col-md-12">
                                     <div class="submit-button text-center">
-                                     <a type="button" class="btn hvr-hover" href="#" @click="onAddCategory">Add Category</a>
+                                     <button type="submit" class="btn hvr-hover" >Add Category</button>
                                         <div class="h3 text-center hidden"></div>
                                         <div class="clearfix"></div>
                                     </div>

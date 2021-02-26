@@ -5,12 +5,12 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">
                         <h2>Add A New Product</h2>
-                        <form action="">
+                        <form @submit.prevent="onAddProduct">
                             <div class="row">
                                 <!-- Title -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input v-model="title" class="form-control" type="text"  name="name" placeholder="Product Title" >
+                                        <input v-model="title" class="form-control" type="text" required name="name" placeholder="Product Title" >
                         
                                     </div>
                                 </div>
@@ -19,7 +19,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                               Price <br>
-                                        <input class="form-control" v-model="price" type="number" placeholder="Product Price" name="name" >
+                                        <input class="form-control" v-model="price" type="number" required placeholder="Product Price" name="name" >
                        
                                     </div>
                                 </div>
@@ -27,7 +27,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                     Select Category <br>
-                                     <select class="form-control"  v-model="categoryID"> 
+                                     <select class="form-control" required  v-model="categoryID"> 
                                          <option v-for="category in categories" :key="category._id" :value="category._id">{{category.type}}</option>
                                    
                                      </select>
@@ -37,7 +37,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                     Select Brand <br>
-                                     <select class="form-control" v-model="ownerID"> 
+                                     <select class="form-control" required v-model="ownerID"> 
                                             <option v-for="owner in owners" :key="owner._id" :value="owner._id">{{owner.name}}</option>
 
                                   
@@ -50,7 +50,7 @@
                             <!-- File  -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                     <input type="file" @change="onFileSelected"/>  
+                                     <input required type="file" @change="onFileSelected"/>  
                                     </div>
                                     <p>{{fileName}}</p>
                                      <img :src="image" :alt="fileName">
@@ -66,7 +66,7 @@
                                       
                
                                          
-                                       <a type="button" class="btn hvr-hover" href="#" @click="onAddProduct">Add A Product</a>
+                                       <button type="submit" class="btn hvr-hover" href="#" >Add A Product</button>
                                     
                                         <div class="h3 text-center hidden"></div>
                                         <div class="clearfix"></div>
