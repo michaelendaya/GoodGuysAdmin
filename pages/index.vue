@@ -89,7 +89,7 @@ export default {
 
   methods: {
     async onDeleteProduct(id, index) {
-      if (confirm("Are you sure you delete this item")) {
+      if (confirm("Are you sure you want to delete this item")) {
         try {
           let response = await this.$axios.$delete(
             `/api/products/${id}`

@@ -27,10 +27,7 @@
                             <li class="dropdown">
 							<a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown"> My Account <i class="fas fa-user"/> </a>
 							<ul class="dropdown-menu">
-                                <li><a href="/profile">{{$auth.$state.user.name}}</a></li>
-								<li><a href="shop.html">Orders</a></li>
-								<li><a href="shop-detail.html">Address</a></li>
-								<li><a href="cart.html">Account Settings</a></li>
+                                <li><nuxt-link to="/profile">Account Settings</nuxt-link></li>
                                 <li><a href="#" @click="onLogout">Logout</a></li>
 							</ul>
                         </li>
