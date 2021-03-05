@@ -79,7 +79,7 @@ export default {
       return {
         products: response.products,
         currentPage: 1,
-        perPage: 5,
+        perPage: 10,
         totalRows: response.count,
       };
     } catch (error) {

@@ -15,7 +15,7 @@
           <tbody>
             <tr v-for="order in orders" :key="order._id">
               <td>
-                <span>({{order._id}}) </span>
+                <span>({{ order._id }}) </span>
               </td>
               <td>
                 <!-- <div v-for="product in order.products" :key="product._id">
@@ -24,8 +24,7 @@
                   Price ${{ product.price * product.quantity }}
                   
                 </div> -->
-                {{ order.owner.name}} 
-       
+                {{ order.owner.name }}
               </td>
               <!-- <td  v-if=" order.owner.address !== null" >  
                     <span>Full Name: {{ order.owner.address.fullName}}</span>
@@ -37,10 +36,12 @@
                     <br>
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
               </td> -->
-                 <td>       ₱ {{order.subTotal }}</td>
-              <td><nuxt-link :to="`/orders/${order._id}`" class="address-alert"
-              >View Order</nuxt-link
-            ></td>
+              <td>₱ {{ order.subTotal }}</td>
+              <td>
+                <nuxt-link :to="`/orders/${order._id}`" class="address-alert"
+                  >View Order</nuxt-link
+                >
+              </td>
             </tr>
           </tbody>
           <tfoot>
@@ -52,6 +53,14 @@
             </tr>
           </tfoot>
         </table>
+        <div class="paginate">
+          <b-pagination
+            @change="handlePageChange"
+            v-model="currentPage"
+            :total-rows="totalRows"
+            :per-page="perPage"
+          ></b-pagination>
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +69,9 @@
   <!--/MAIN-->
 </template>
 <script>
+import Vue from "vue";
+import BootstrapVue from "bootstrap-vue";
+Vue.use(BootstrapVue);
 export default {
   async asyncData({ $axios }) {
     try {
@@ -67,21 +79,24 @@ export default {
       console.log(response);
       return {
         orders: response.products,
+        currentPage: 1,
+        perPage: 10,
+        totalRows: response.count,
       };
     } catch (error) {
       console.log(error);
     }
   },
-  computed: {
-    totalItem: function () {
-      let sum = 0;
-     products.forEach(function (item) {
-        sum += parseFloat(item.price) * parseFloat(item.quantity);
-      });
-
-      return sum;
+    methods: {
+    async handlePageChange(page) {
+      console.log(page);
+      let response = await this.$axios.$get(
+        `/api/admin/orders?page=${page}`
+      );
+      this.orders = response.products;
     },
   },
+
 };
 </script>
 

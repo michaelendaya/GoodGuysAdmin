@@ -779,14 +779,14 @@
 }
 
 .page-item.active .page-link {  
-    background-color: red !important;  
-    border-color: red !important;  
+    background-color: #d5b256 !important;  
+    border-color: #d5b256 !important;  
 }
 .page-link{
-    color: pink
+    color: #d5b256
 }
 .page-link:hover{
-    color: green
+    color: #d5b256
 }
  ul.cart-list > li.total > .btn:hover{
      color: #ffffff;
