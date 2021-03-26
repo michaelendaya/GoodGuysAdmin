@@ -1,4 +1,6 @@
-const URL = 'http://localhost:3000'
+//const URL = 'http://localhost:3000'
+const URL = 'https://goodrides-by-goodguys-api.herokuapp.com'
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   
@@ -98,7 +100,7 @@ export default {
     }
    },
 
-  server: {
-    port: 8000 // default: 3000
-  }
+  // server: {
+  //   port: 8000 // default: 3000
+  // }
 }
