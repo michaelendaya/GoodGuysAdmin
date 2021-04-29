@@ -28,7 +28,7 @@
                 
 				<div class="col-lg-4 col-sm-12">
                     <div class="contact-info-left">
-                        <h2>CONTACT INFO</h2>
+                        <h2>Category Lists</h2>
                           <ul class="list-group">
                     <li class="list-group-item" v-for="category in categories" :key="category._id">{{category.type}}</li>
                         </ul>   

@@ -53,7 +53,7 @@
                                      <input type="file" required @change="onFileSelected"/>  
                                     </div>
                                     <p>{{fileName}}</p>
-                                     <img :src="image" :alt="fileName">
+                                     <img :src="image" :alt="fileName" class="preview-img mb-5">
                                 </div>
                             <!-- Description -->
                                 <div class="col-md-12">
@@ -149,3 +149,9 @@ export default {
        }
 }
 </script>
+<style scoped>
+.preview-img{
+    max-height: 600px;
+    max-width: 680px;
+}
+</style>

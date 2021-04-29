@@ -7,7 +7,7 @@
       <nuxt-link to="/category" class="btn hvr-hover"
         >Add a new category</nuxt-link
       >
-      <nuxt-link to="/owner" class="btn hvr-hover">Add a new owner</nuxt-link>
+      <nuxt-link to="/owner" class="btn hvr-hover">Add a new brand</nuxt-link>
       <table class="table table-bordered">
         <thead>
           <tr>

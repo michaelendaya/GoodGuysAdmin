@@ -36,7 +36,8 @@
                     <br>
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
               </td> -->
-              <td>₱ {{ order.subTotal }}</td>
+              <td>₱ {{ parseFloat(order.subTotal).toFixed(2) }}</td>
+     
               <td>
                 <nuxt-link :to="`/orders/${order._id}`" class="address-alert"
                   >View Order</nuxt-link
@@ -73,6 +74,9 @@ import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 Vue.use(BootstrapVue);
 export default {
+        head:{
+     title: 'Orders',
+    },
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get("/api/admin/orders");

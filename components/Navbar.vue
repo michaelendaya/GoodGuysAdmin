@@ -20,9 +20,8 @@
 					<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 						<li class="nav-item"><nuxt-link to="/" class="nav-link" >Home</nuxt-link></li>
 						<li class="nav-item"><nuxt-link to="/orders" class="nav-link" >Orders</nuxt-link></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">Go To Client</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://goodrides-by-goodguys.herokuapp.com/">Go To Client</a></li>
 	
-                      
                         <template v-if="$auth.$state.loggedIn">
                             <li class="dropdown">
 							<a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown"> My Account <i class="fas fa-user"/> </a>

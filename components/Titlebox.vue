@@ -4,7 +4,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>{{ $route.name }}</h2>
+
+                    <h2 >Admin</h2>
       
                 </div>
             </div>

@@ -1,5 +1,5 @@
-//const URL = 'http://localhost:3000'
-const URL = 'https://goodrides-by-goodguys-api.herokuapp.com'
+const URL = 'http://localhost:3000'
+// const URL = 'https://goodrides-by-goodguys-api.herokuapp.com'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -54,7 +54,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: "~/plugins/vue2-editor", ssr: false }
+    { src: "~/plugins/vue2-editor", ssr: false },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -92,15 +92,17 @@ export default {
       local: {
         endpoints: {
           login: {
-           url:'/api/auth/admin/login',   propertyName: "token" 
+           url:'/api/auth/admin/login', propertyName: "token" 
           },
           logout:true
-        }
+        },
       }
-    }
+    },
+    autoLogout:true,
+    resetOnError:true
    },
 
-  // server: {
-  //   port: 8000 // default: 3000
-  // }
+  server: {
+    port: 8000 // default: 3000
+  }
 }

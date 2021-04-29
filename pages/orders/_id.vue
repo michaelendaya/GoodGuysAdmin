@@ -17,8 +17,8 @@
               <h3>Subtotal</h3>
             </div>
             <div class="mb-3">
-      
-              <h4>₱ {{ order.subTotal }}</h4>
+  
+              <h4>₱ {{  parseFloat(order.subTotal).toFixed(2) }}</h4>
             </div>
 
           </div>
@@ -79,8 +79,10 @@
                     <br>
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
               </td> -->
-              <td>₱ {{ product.price }}</td>
-              <td>₱ {{ product.price * product.quantity }}</td>
+              <td>₱ {{  parseFloat(product.price).toFixed(2) }}</td>
+
+              
+              <td>₱ {{  parseFloat(product.price * product.quantity).toFixed(2) }}</td>
             </tr>
           </tbody>
           <tfoot>
@@ -96,7 +98,7 @@
           href="#"
           @click="onDeleteOrder(order._id)"
           class="btn hvr-hover ml-auto"
-          >Delete</a
+          >Mark As Completed</a
         >
       </div>
     </div>
@@ -104,6 +106,9 @@
 </template>
 <script>
 export default {
+        head:{
+     title: 'Orders',
+    },
   async asyncData({ $axios, params }) {
     try {
       let response = await $axios.$get(`/api/admin/orders/${params.id}`);
@@ -117,9 +122,8 @@ export default {
   },
   methods: {
     async onDeleteOrder(id) {
-      if (confirm("Are you sure you delete the order")) {
+      if (confirm("Are you sure you complete the order(It will remove the order from the list)")) {
         // Delete it!
-
         try {
           let response = await this.$axios.$delete(`/api/admin/orders/${id}`);
           if (response.status) {

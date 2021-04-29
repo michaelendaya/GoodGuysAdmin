@@ -4,19 +4,19 @@
             <div class="row">
                   <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">
-                        <h2>Add An Owner</h2>
+                        <h2>Add A Brand</h2>
                         <form action="">
                             <div class="row">
                                 <!-- Owner Name -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input v-model="name" class="form-control" type="text"  name="name" placeholder="Owner Name" >
+                                        <input v-model="name" class="form-control" type="text"  name="name" placeholder="Brand Name" >
                                     </div>
                                 </div>  
                                 <!-- Owner About -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input v-model="about" class="form-control" type="text"  name="name" placeholder="About Owner" >
+                                        <input v-model="about" class="form-control" type="text"  name="name" placeholder="About Brand" >
                                     </div>
                                 </div>
                                  <!-- File  -->
@@ -28,7 +28,7 @@
 
                                 <div class="col-md-12">
                                     <div class="submit-button text-center">
-                                     <a type="button" class="btn hvr-hover" href="#" @click="onAddOwner">Add Category</a>
+                                     <a type="button" class="btn hvr-hover" href="#" @click="onAddOwner">Add Brand</a>
                                         <div class="h3 text-center hidden"></div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -40,7 +40,7 @@
                 
 					<div class="col-lg-4 col-sm-12">
                     <div class="contact-info-left">
-                        <h2>Owner List</h2>
+                        <h2>Brand List</h2>
                           <ul class="list-group">
                     <li class="list-group-item" v-for="owner in owners" :key="owner._id">{{owner.name}}</li>
                         </ul>   
