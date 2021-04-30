@@ -9,6 +9,7 @@
               <th>Order ID</th>
               <th>Owner</th>
               <th>Subtotal</th>
+              <th>Status</th>
               <th>View</th>
             </tr>
           </thead>
@@ -37,7 +38,7 @@
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
               </td> -->
               <td>₱ {{ parseFloat(order.subTotal).toFixed(2) }}</td>
-     
+              <td>{{ order.status }}</td>
               <td>
                 <nuxt-link :to="`/orders/${order._id}`" class="address-alert"
                   >View Order</nuxt-link
@@ -50,6 +51,7 @@
               <th>Order Id</th>
               <th>Owner</th>
               <th>Subtotal</th>
+              <th>Status</th>
               <th>View</th>
             </tr>
           </tfoot>
@@ -74,9 +76,9 @@ import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
 Vue.use(BootstrapVue);
 export default {
-        head:{
-     title: 'Orders',
-    },
+  head: {
+    title: "Orders"
+  },
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get("/api/admin/orders");
@@ -85,22 +87,19 @@ export default {
         orders: response.products,
         currentPage: 1,
         perPage: 10,
-        totalRows: response.count,
+        totalRows: response.count
       };
     } catch (error) {
       console.log(error);
     }
   },
-    methods: {
+  methods: {
     async handlePageChange(page) {
       console.log(page);
-      let response = await this.$axios.$get(
-        `/api/admin/orders?page=${page}`
-      );
+      let response = await this.$axios.$get(`/api/admin/orders?page=${page}`);
       this.orders = response.products;
-    },
-  },
-
+    }
+  }
 };
 </script>
 
@@ -127,6 +126,3 @@ h1 {
   font-weight: 700;
 }
 </style>
-
-
-

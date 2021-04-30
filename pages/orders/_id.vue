@@ -8,23 +8,19 @@
               <h3>Client</h3>
             </div>
             <div class="mb-3">
-              <h4>{{  order.owner.name}}</h4>
+              <h4>{{ order.owner.name }}</h4>
             </div>
             <div class="mb-3">
-              <h4>{{  order.owner.email }}</h4>
+              <h4>{{ order.owner.email }}</h4>
             </div>
-             <div class="title-left">
+            <div class="title-left">
               <h3>Subtotal</h3>
             </div>
             <div class="mb-3">
-  
-              <h4>₱ {{  parseFloat(order.subTotal).toFixed(2) }}</h4>
+              <h4>₱ {{ parseFloat(order.subTotal).toFixed(2) }}</h4>
             </div>
-
           </div>
         </div>
-
-
 
         <div class="col-sm-6 col-lg-6 mb-3">
           <div class="checkout-address">
@@ -79,10 +75,11 @@
                     <br>
                     <span>Zipcode: {{ order.owner.address.zipCode}}</span>
               </td> -->
-              <td>₱ {{  parseFloat(product.price).toFixed(2) }}</td>
+              <td>₱ {{ parseFloat(product.price).toFixed(2) }}</td>
 
-              
-              <td>₱ {{  parseFloat(product.price * product.quantity).toFixed(2) }}</td>
+              <td>
+                ₱ {{ parseFloat(product.price * product.quantity).toFixed(2) }}
+              </td>
             </tr>
           </tbody>
           <tfoot>
@@ -106,15 +103,15 @@
 </template>
 <script>
 export default {
-        head:{
-     title: 'Orders',
-    },
+  head: {
+    title: "Orders"
+  },
   async asyncData({ $axios, params }) {
     try {
       let response = await $axios.$get(`/api/admin/orders/${params.id}`);
       console.log(response);
       return {
-        orders: response.products,
+        orders: response.products
       };
     } catch (error) {
       console.log(error);
@@ -122,11 +119,15 @@ export default {
   },
   methods: {
     async onDeleteOrder(id) {
-      if (confirm("Are you sure you complete the order(It will remove the order from the list)")) {
+      if (
+        confirm(
+          "Are you sure you complete the order(It will remove the order from the list)"
+        )
+      ) {
         // Delete it!
         try {
-          let response = await this.$axios.$delete(`/api/admin/orders/${id}`);
-          if (response.status) {
+          let complete = await this.$axios.$put(`/api/admin/orders/${id}`);
+          if (complete.status) {
             this.$router.push("/orders");
           }
         } catch (err) {
@@ -135,8 +136,8 @@ export default {
       } else {
         // Do nothing!
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
