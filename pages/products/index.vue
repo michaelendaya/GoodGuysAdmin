@@ -15,11 +15,18 @@
                                     </div>
                                 </div>
                                 <!-- Price -->
-                    
                                 <div class="col-md-12">
                                     <div class="form-group">
                                               Price <br>
                                         <input class="form-control" v-model="price" type="number" required placeholder="Product Price" name="name" >
+                       
+                                    </div>
+                                </div>
+                                <!-- Qty -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                              Quantity <br>
+                                        <input class="form-control" v-model="quantity" type="number" required placeholder="Product Quantity" name="name" >
                        
                                     </div>
                                 </div>
@@ -63,11 +70,7 @@
                                     </div>
                             <!-- Submit -->
                                     <div class="submit-button text-center">
-                                      
-               
-                                         
-                                       <button type="submit" class="btn hvr-hover" href="#" >Add A Product</button>
-                                    
+                                    <button type="submit" class="btn hvr-hover" href="#" >Add A Product</button>                                 
                                         <div class="h3 text-center hidden"></div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -115,6 +118,7 @@ export default {
             ownerID:null,
             title:"",
             price:0,
+            quantity:0,
             description:"",
             selectedFile:null,
             fileName:"",
@@ -135,6 +139,7 @@ export default {
              data.append("title",this.title);
              data.append("price",this.price);
              data.append("description",this.description);
+             data.append("stockQuantity",this.quantity);
              data.append("ownerID",this.ownerID);
              data.append("categoryID",this.categoryID);
              data.append("photo",this.selectedFile, this.selectedFile.name);

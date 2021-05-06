@@ -12,6 +12,7 @@
         <thead>
           <tr>
             <th>Product Name</th>
+            <th>Stock</th>
             <th>Image</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -20,6 +21,7 @@
         <tbody>
           <tr v-for="(product, index) in products" :key="product._id">
             <td class="title">{{ product.title }}</td>
+            <td class="title">{{ product.stockQuantity }}</td>
             <td><img :src="product.photo" alt="" /></td>
             <td class="table-image">
               <nuxt-link

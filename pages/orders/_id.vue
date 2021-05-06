@@ -93,10 +93,18 @@
         </table>
         <a
           href="#"
-          @click="onDeleteOrder(order._id)"
+          @click="onShipOrder(order._id)"
           class="btn hvr-hover ml-auto"
-          >Mark As Completed</a
+          >Mark As Shipping</a
         >
+        <div class="ml-5">
+          <a
+            href="#"
+            @click="onDeleteOrder(order._id)"
+            class="btn hvr-hover ml-auto"
+            >Mark As Completed</a
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -104,14 +112,14 @@
 <script>
 export default {
   head: {
-    title: "Orders"
+    title: "Orders",
   },
   async asyncData({ $axios, params }) {
     try {
       let response = await $axios.$get(`/api/admin/orders/${params.id}`);
       console.log(response);
       return {
-        orders: response.products
+        orders: response.products,
       };
     } catch (error) {
       console.log(error);
@@ -121,7 +129,7 @@ export default {
     async onDeleteOrder(id) {
       if (
         confirm(
-          "Are you sure you complete the order(It will remove the order from the list)"
+          "Are you sure you complete the order?"
         )
       ) {
         // Delete it!
@@ -136,8 +144,27 @@ export default {
       } else {
         // Do nothing!
       }
-    }
-  }
+    },
+    async onShipOrder(id) {
+      if (
+        confirm(
+          "Change order to shipping?"
+        )
+      ) {
+        // Delete it!
+        try {
+          let complete = await this.$axios.$put(`/api/admin/orders/ship/${id}`);
+          if (complete.status) {
+            this.$router.push("/orders");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        // Do nothing!
+      }
+    },
+  },
 };
 </script>
 <style scoped>
