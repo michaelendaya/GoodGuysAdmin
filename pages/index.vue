@@ -44,6 +44,7 @@
         <tfoot>
           <tr>
             <th>Product Name</th>
+            <th>Stock</th>
             <th>Image</th>
             <th>Edit</th>
             <th>Delete</th>
